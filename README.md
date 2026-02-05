@@ -1,6 +1,6 @@
 # Capitalis | Gestão de Patrimônio de Elite
 
-![Capitalis Preview](./public/favicon.png)
+![Capitalis Preview](./public/favicon.svg)
 
 > Estratégias financeiras de elite para investidores que exigem solidez, transparência e performance.
 
