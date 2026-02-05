@@ -1,8 +1,40 @@
 import { motion } from "framer-motion";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WealthCard } from "@/components/WealthCard";
 import heroBg from "@/assets/hero-bg.jpg";
+
+const stats = [
+  { value: "15+", label: "Anos de Experiência" },
+  { value: "R$ 2.4B", label: "Sob Gestão" },
+  { value: "847+", label: "Famílias Atendidas" },
+];
+
+const MobileStatsCarousel = () => {
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, align: "start", dragFree: true, containScroll: "trimSnaps" },
+    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+  );
+
+  return (
+    <div className="overflow-hidden px-4" ref={emblaRef}>
+      <div className="flex touch-pan-y">
+        {/* Duplicate array for infinite look if needed, but 'loop: true' handles it if content is wide enough. 
+            However, with few items, explicit duplication is safer for seamless loop. */}
+        {[...stats, ...stats, ...stats].map((stat, index) => (
+          <div key={index} className="flex-[0_0_45%] min-w-0 pr-6">
+            <div className="text-left border-l-2 border-gold/30 pl-4 my-2">
+              <p className="font-serif text-3xl font-bold text-navy whitespace-nowrap">{stat.value}</p>
+              <p className="font-sans text-sm text-muted-foreground whitespace-nowrap">{stat.label}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
 
 export const Hero = () => {
   return (
@@ -21,7 +53,7 @@ export const Hero = () => {
       <div className="relative container-custom pt-32 pb-20 lg:pt-32 lg:pb-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Text */}
-          <div className="order-2 lg:order-1">
+          <div className="order-2 lg:order-1 min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -41,7 +73,7 @@ export const Hero = () => {
               </motion.div>
 
               {/* Headline */}
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-navy leading-tight mb-6 break-words hyphens-auto">
                 A Ciência da{" "}
                 <span className="text-gradient-gold">Multiplicação</span>{" "}
                 de Patrimônio.
@@ -82,21 +114,24 @@ export const Hero = () => {
                 transition={{ delay: 1 }}
                 className="mt-12 pt-8 border-t border-border"
               >
-                <div className="grid grid-cols-2 md:flex items-start md:items-center gap-8 md:gap-8">
-                  <div className="text-left md:text-center">
-                    <p className="font-serif text-3xl font-bold text-navy">15+</p>
-                    <p className="font-sans text-sm text-muted-foreground">Anos de Experiência</p>
-                  </div>
-                  <div className="w-px h-12 bg-border hidden md:block" />
-                  <div className="text-left md:text-center">
-                    <p className="font-serif text-3xl font-bold text-navy">R$ 2.4B</p>
-                    <p className="font-sans text-sm text-muted-foreground">Sob Gestão</p>
-                  </div>
-                  <div className="w-px h-12 bg-border hidden md:block" />
-                  <div className="text-center col-span-2 md:col-span-1 md:text-center">
-                    <p className="font-serif text-3xl font-bold text-navy">847+</p>
-                    <p className="font-sans text-sm text-muted-foreground">Famílias Atendidas</p>
-                  </div>
+                {/* Desktop View (Static) */}
+                <div className="hidden md:flex items-center gap-8">
+                  {stats.map((stat, index) => (
+                    <div key={index} className="flex items-center gap-8">
+                      <div className="text-center">
+                        <p className="font-serif text-3xl font-bold text-navy">{stat.value}</p>
+                        <p className="font-sans text-sm text-muted-foreground">{stat.label}</p>
+                      </div>
+                      {index < stats.length - 1 && (
+                        <div className="w-px h-12 bg-border block" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mobile View (Carousel) */}
+                <div className="md:hidden -mx-4">
+                  <MobileStatsCarousel />
                 </div>
               </motion.div>
             </motion.div>
