@@ -6,7 +6,7 @@ import heroBg from "@/assets/hero-bg.jpg";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-start lg:items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div
@@ -18,7 +18,7 @@ export const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative container-custom pt-32 pb-20">
+      <div className="relative container-custom pt-32 pb-20 lg:pt-32 lg:pb-20">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Left Column - Text */}
           <div className="order-2 lg:order-1">
@@ -49,8 +49,8 @@ export const Hero = () => {
 
               {/* Subheadline */}
               <p className="font-sans text-lg md:text-xl text-muted-foreground leading-relaxed mb-8 max-w-xl">
-                Estratégias financeiras de elite para investidores que exigem 
-                solidez e transparência. Construa riqueza geracional com quem 
+                Estratégias financeiras de elite para investidores que exigem
+                solidez e transparência. Construa riqueza geracional com quem
                 entende o mercado.
               </p>
 
@@ -82,18 +82,18 @@ export const Hero = () => {
                 transition={{ delay: 1 }}
                 className="mt-12 pt-8 border-t border-border"
               >
-                <div className="flex flex-wrap items-center gap-8">
-                  <div className="text-center">
+                <div className="grid grid-cols-2 md:flex items-start md:items-center gap-8 md:gap-8">
+                  <div className="text-left md:text-center">
                     <p className="font-serif text-3xl font-bold text-navy">15+</p>
                     <p className="font-sans text-sm text-muted-foreground">Anos de Experiência</p>
                   </div>
-                  <div className="w-px h-12 bg-border hidden sm:block" />
-                  <div className="text-center">
+                  <div className="w-px h-12 bg-border hidden md:block" />
+                  <div className="text-left md:text-center">
                     <p className="font-serif text-3xl font-bold text-navy">R$ 2.4B</p>
                     <p className="font-sans text-sm text-muted-foreground">Sob Gestão</p>
                   </div>
-                  <div className="w-px h-12 bg-border hidden sm:block" />
-                  <div className="text-center">
+                  <div className="w-px h-12 bg-border hidden md:block" />
+                  <div className="text-center col-span-2 md:col-span-1 md:text-center">
                     <p className="font-serif text-3xl font-bold text-navy">847+</p>
                     <p className="font-sans text-sm text-muted-foreground">Famílias Atendidas</p>
                   </div>
